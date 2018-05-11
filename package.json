@@ -1,0 +1,26 @@
+{
+  "name": "dynamite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "checkGameState.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrew-rees/dynamite.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrew-rees/dynamite/issues"
+  },
+  "homepage": "https://github.com/andrew-rees/dynamite#readme",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.1.1"
+  }
+}
