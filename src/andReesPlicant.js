@@ -76,8 +76,8 @@ class Bot {
         //on first move, returns a random move
         if (gamestate.rounds.length === 0) {
             var fiveMoves = ['R', 'P', 'S', 'D', 'W'];
-            var randomNextMove = fiveMoves[Math.floor(Math.random() * fiveMoves.length)];
-            return randomNextMove;
+            var randomFirstMove = fiveMoves[Math.floor(Math.random() * fiveMoves.length)];
+            return randomFirstMove;
         }
         // from the 1st round onwards, play the move the opponent played previously, unless countOwnDyamite >= 100
         let previousRound = gamestate.rounds[gamestate.rounds.length - 1];
@@ -104,9 +104,11 @@ class Bot {
             } else if (previousRound.p2 === "S") {
                 return "S"
             } else if (previousRound.p2 === "D") {
-                return "D"
+                var fourMovesRPSW = ['R', 'P', 'S', 'W'];
+                var randomFourMovesRPSW = fourMovesRPSW[Math.floor(Math.random() * fourMovesRPSW.length)];
+                return randomFourMovesRPSW;
             } else if (previousRound.p2 === "W") {
-                var fourMovesRPSD = ['R', 'P', 'S', 'D'];
+                var fourMovesRPSD = ['R', 'P', 'S',/* 'D'*/];
                 var randomFourMovesRPSD = fourMovesRPSD[Math.floor(Math.random() * fourMovesRPSD.length)];
                 return randomFourMovesRPSD;
             }
@@ -118,9 +120,9 @@ class Bot {
             } else if (previousRound.p2 === "S") {
                 return "S"
             } else if (previousRound.p2 === "D") {
-                var fourMoves = ['R', 'P', 'S', 'W'];
-                var randomFourMoves = fourMoves[Math.floor(Math.random() * fourMoves.length)];
-                return randomFourMoves;
+                var fourMovesRPSW = ['R', 'P', 'S', 'W'];
+                var randomFourMovesRPSW = fourMovesRPSW[Math.floor(Math.random() * fourMovesRPSW.length)];
+                return randomFourMovesRPSW;
             } else if (previousRound.p2 === "W") {
                 return "W"
             }
@@ -134,7 +136,9 @@ class Bot {
                 } else if (previousRound.p2 === "S") {
                     return "S"
                 } else if (previousRound.p2 === "D") {
-                    return "D"
+                    var fourMovesRPSW = ['R', 'P', 'S', 'W'];
+                    var randomFourMovesRPSW = fourMovesRPSW[Math.floor(Math.random() * fourMovesRPSW.length)];
+                    return randomFourMovesRPSW;
                 } else if (previousRound.p2 === "W") {
                     return "W"
                 }
@@ -144,5 +148,10 @@ class Bot {
 
         }
     }
+
+//DRAWING
+//if previous round(s) were draw(s), play D.
+
+
 
 module.exports = new Bot();
