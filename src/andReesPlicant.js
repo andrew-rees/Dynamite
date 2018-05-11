@@ -81,7 +81,36 @@ class Bot {
         }
         // from the 1st round onwards, play the move the opponent played previously, unless countOwnDyamite >= 100
         let previousRound = gamestate.rounds[gamestate.rounds.length - 1];
-        if (countOwnDynamite >= 100) {
+        // if no own D left, don't play D
+        if (countOwnDynamite >= 100 && countEnemyDynamite >= 100) {
+            if (previousRound.p2 === "R") {
+                return "R"
+            } else if (previousRound.p2 === "P") {
+                return "P"
+            } else if (previousRound.p2 === "S") {
+                return "S"
+            } else if (previousRound.p2 === "D" || previousRound.p2 === "W") {
+                var threeMoves = ['R', 'P', 'S'];
+                var randomThreeMoves = threeMoves[Math.floor(Math.random() * threeMoves.length)];
+                return randomThreeMoves;
+            }
+
+            //if opp has no D, don't do W
+        } else if (countEnemyDynamite >= 100 && countOwnDynamite < 100) {
+            if (previousRound.p2 === "R") {
+                return "R"
+            } else if (previousRound.p2 === "P") {
+                return "P"
+            } else if (previousRound.p2 === "S") {
+                return "S"
+            } else if (previousRound.p2 === "D") {
+                return "D"
+            } else if (previousRound.p2 === "W") {
+                var fourMovesRPSD = ['R', 'P', 'S', 'D'];
+                var randomFourMovesRPSD = fourMovesRPSD[Math.floor(Math.random() * fourMovesRPSD.length)];
+                return randomFourMovesRPSD;
+            }
+        } else if (countOwnDynamite >= 100 && countEnemyDynamite < 100) {
             if (previousRound.p2 === "R") {
                 return "R"
             } else if (previousRound.p2 === "P") {
@@ -95,24 +124,25 @@ class Bot {
             } else if (previousRound.p2 === "W") {
                 return "W"
             }
-
-        } else {
-            if (previousRound.p2 === "R") {
-                return "R"
-            } else if (previousRound.p2 === "P") {
-                return "P"
-            } else if (previousRound.p2 === "S") {
-                return "S"
-            } else if (previousRound.p2 === "D") {
-                return "D"
-            } else if (previousRound.p2 === "W") {
-                return "W"
-            }
         }
+            //if still have own D left, copy opponent
+            else {
+                if (previousRound.p2 === "R") {
+                    return "R"
+                } else if (previousRound.p2 === "P") {
+                    return "P"
+                } else if (previousRound.p2 === "S") {
+                    return "S"
+                } else if (previousRound.p2 === "D") {
+                    return "D"
+                } else if (previousRound.p2 === "W") {
+                    return "W"
+                }
+            }
 
 
 
+        }
     }
-}
 
 module.exports = new Bot();
